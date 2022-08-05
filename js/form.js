@@ -4,18 +4,37 @@ botonAdicionar.addEventListener("click", function (event) {
     event.preventDefault();
 
     var form = document.querySelector("#form-adicionar");
-
     var paciente = capturarDatosPacientes(form);
-
+    var pacienteTr = construirTr(paciente);
     var tabla = document.querySelector("#tabla-pacientes");
+    tabla.appendChild(pacienteTr);
 
+});
+
+function capturarDatosPacientes(form) {
+    //capturando los datos del formulario
+
+    var paciente = { //creo la clase paciente
+        nombre: form.nombre.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calcularIMC(form.peso.value, form.altura.value)
+    }
+
+    return paciente;
+}
+
+function construirTr(paciente) {
     //Crear los td y un tr
-    pacienteTr = document.createElement("tr");
-    nombreTd = document.createElement("td");
-    alturaTd = document.createElement("td");
-    pesoTd = document.createElement("td");
-    gorduraTd = document.createElement("td");
-    imcTd = document.createElement("td");
+    var pacienteTr = document.createElement("tr");
+    pacienteTr.classList.add("paciente");
+
+    var nombreTd = document.createElement("td");
+    var alturaTd = document.createElement("td");
+    var pesoTd = document.createElement("td");
+    var gorduraTd = document.createElement("td");
+    var imcTd = document.createElement("td");
 
     //Asignar valores a la propiedad textContent
     nombreTd.textContent = paciente.nombre;
@@ -31,20 +50,9 @@ botonAdicionar.addEventListener("click", function (event) {
     pacienteTr.appendChild(gorduraTd);
     pacienteTr.appendChild(imcTd);
 
-    tabla.appendChild(pacienteTr);
-
-});
-
-function capturarDatosPacientes(form) {
-    //capturando los datos del formulario
-
-    var paciente = { //creo la clase paciente
-        nombre: form.nombre.value,
-        peso: form.peso.value,
-        altura: form.altura.value,
-        gordura: form.gordura.value,
-        imc: calcularIMC(form.peso.value, form.altura.value)
+    return pacienteTr;
 }
 
-return paciente;
+function construirTd(dato, clase) {
+
 }
