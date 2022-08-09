@@ -56,3 +56,11 @@ function validarAltura(altura) {
         return false;
     }
 }
+
+function validarGordura(gordura) {
+    if (gordura >= 1000 && altura < 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

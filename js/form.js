@@ -74,7 +74,7 @@ function validarPaciente(paciente) {
     }
 
     if (paciente.gordura.length == 0) {
-        errores.push("El %gordura no puede estar vacío");
+        errores.push("El %gordura no puede estar vacío ni contener valores negativos");
     }
 
 
@@ -84,6 +84,11 @@ function validarPaciente(paciente) {
     if (!validarAltura(paciente.altura)) {
         errores.push("La altura es incorrecta");
     }
+
+    if (!validarGordura(paciente.gordura)) {
+        errores.push("El % de gordura es incorrecto");
+    }
+
     return errores;
 }
 
