@@ -7,9 +7,11 @@ botonAdicionar.addEventListener("click", function (event) {
     var paciente = capturarDatosPacientes(form);
     var pacienteTr = construirTr(paciente);
 
-    if (!validarPaciente(paciente)) {
-        console.log("Paciente incorrecto");
-        return; //hace alusión a lla función anónima
+    var errores = validarPaciente(paciente);
+    if (errores.length > 0) {
+        var mensajeError = document.querySelector("#mensaje-error");
+        mensajeError.textContent = error;
+        return; //hace alusión a la función anónima
     }
     //Validar paciente
     var tabla = document.querySelector("#tabla-pacientes");
@@ -54,9 +56,12 @@ function construirTd(dato, clase) {
 }
 
 function validarPaciente(paciente) {
-    if (validarPeso(paciente.peso)) {
-        return true;
-    } else {
-        return false;
+    var errores = []
+    if (!validarPeso(paciente.peso)) {
+        errores.push("El peso es incorrecto");
     }
+    if (!validarAltura(paciente.altura)) {
+        errores.push("La altura es incorrecta");
+    }
+    return errores;
 }
