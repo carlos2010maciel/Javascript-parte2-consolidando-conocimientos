@@ -58,7 +58,7 @@ function validarAltura(altura) {
 }
 
 function validarGordura(gordura) {
-    if (gordura >= 1000 && altura < 0) {
+    if (gordura >= 0 && gordura < 1000) {
         return true;
     } else {
         return false;
